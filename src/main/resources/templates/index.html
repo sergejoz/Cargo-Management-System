@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org"  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+	<th:block th:include="~{head}"></th:block>
+    <title>Компания перевозок</title>
+</head>
+<body>
+<header>
+	<th:block th:include="~{navbar}"></th:block>
+</header>
+	<main class="text-center">
+        <div class="jumbotron bg-light">
+            <h1 class="display-1 font-italic">CARGO MANAGMENT SYSTEM</h1>
+            <hr>
+            <p>
+               Чтобы оформить заявку <a th:href="@{/users/login}">Войдите</a>, а если у Вас нет аккаунта -  <a th:href="@{/users/register}">Зарегистрируйтесь</a>
+            </p>
+        </div>
+    </main>
+<footer>
+<th:block th:include="~{footer}"></th:block>
+</footer>
+</body>
+</html>
