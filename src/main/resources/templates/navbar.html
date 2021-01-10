@@ -1,7 +1,7 @@
 <th:block>
 
 	<th:block sec:authorize="isAnonymous()">
-		 <nav class="navbar navbar-expand-lg navbar-light bg-light rounded font-weight-bold">
+		 <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded font-weight-bold">
         <a class="navbar-brand" th:href="@{/}">CARGO APP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#guestNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -23,7 +23,7 @@
 	</th:block>
 	
 	<th:block sec:authorize="isAuthenticated()">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light rounded font-weight-bold">
+		<nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded font-weight-bold">
         <a class="navbar-brand" th:href="@{/home}">CARGO APP</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#userNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -59,6 +59,19 @@
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <a class="dropdown-item" th:href="@{/employees/all}">Все менеджеры</a>
                                 <a class="dropdown-item" th:href="@{/employees/add}">Добавить менеджера</a>
+                            </div>
+                        </div>
+                    </li>
+                </th:block>
+
+                <th:block sec:authorize="hasAnyRole('ROLE_ADMIN','ROLE_EMPLOYEE')">
+                    <li class="nav-item active">
+                        <div class="dropdown">
+                            <a class="nav-link active dropdown-toggle" href="#" role="button" id="adminDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Компании
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="adminDropdown">
+                                <a class="dropdown-item" th:href="@{/companies/all}">Все компании</a>
                             </div>
                         </div>
                     </li>

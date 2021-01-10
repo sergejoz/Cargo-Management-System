@@ -1,5 +1,6 @@
 package com.msd.cms.controller;
 
+import com.msd.cms.entities.Shipment;
 import com.msd.cms.entities.User;
 import com.msd.cms.models.binding.UserEditBindingModel;
 import com.msd.cms.models.view.UserProfileViewModel;
@@ -73,7 +74,13 @@ public class UserController  {
 		return "home";
 	}
 
-
+	@GetMapping("/deleteUser/{id}")
+	@PreAuthorize("hasAnyRole('ROLE_ADMIN')")
+	public String deleteUser(@PathVariable String id, Model model) {
+		this.userService.deleteUser(id);
+		model.addAttribute("users", userService.findAllUsers());
+		return "user/users-all";
+	}
 
 
 

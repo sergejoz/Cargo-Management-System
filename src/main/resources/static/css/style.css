@@ -6,7 +6,7 @@ hr.hr-2 {
     background: transparent;
     border: none;
     font-weight: bold;
-    color: rgba(0, 0, 0, 1) !important;
+    color: white !important;
 }
 
 .logout-button:hover {
@@ -23,6 +23,10 @@ img.img-thumbnail {
     padding: 5px; /* Some padding */
     max-width: 40px;
     max-height: 40px;
+}
+
+.carousel-caption {
+    background: rgba(0, 0, 0, 0.5);
 }
 
 

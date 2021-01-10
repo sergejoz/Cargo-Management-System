@@ -57,7 +57,7 @@
                      <td class="col-md-1 text-center">
                         <a  th:href="@{shipments/registerShipment/{id}(id=${shipment.id})} "
                            class="btn btn-info btn-sm">
-                            Register
+                            Подтверждена
                         </a>
                      </td>
                     </div>
@@ -65,18 +65,18 @@
                     <td class="col-md-1 text-center">
                         <a th:href="@{shipments/deliverShipment/{id}(id=${shipment.id})} "
                            class="btn btn-info btn-sm">
-                            Deliver
+                            Доставлена
                         </a>
                     </td>
                     </div>
-<!--                    <div sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">-->
-<!--                    <td class="col-md-1 text-center">-->
-<!--                    <a th:href="@{shipments/edit/{id}(id=${shipment.id})} "-->
-<!--                       class="btn btn-info btn-sm">-->
-<!--                        Update-->
-<!--                    </a>-->
-<!--                    </td>-->
-<!--                    </div>-->
+                    <div sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
+                    <td class="col-md-1 text-center">
+                    <a th:href="@{shipments/edit/{id}(id=${shipment.id})} "
+                       class="btn btn-info btn-sm">
+                        Изменить
+                    </a>
+                    </td>
+                    </div>
                     <div sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
                     <td class="col-md-1 text-center">
                         <a th:href="@{/shipments/delete/{id}(id=${shipment.id})}"

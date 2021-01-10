@@ -57,4 +57,8 @@ public class CompanyServiceImpl implements CompanyService {
 		return companyRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
 	}
 
+	@Override
+	public void deleteCompanyById(String id) {
+		companyRepository.deleteById(id);
+	}
 }

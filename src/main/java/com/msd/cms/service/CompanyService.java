@@ -10,4 +10,5 @@ public interface CompanyService {
 	double calculateIncome(LocalDate startDate, LocalDate endDate);
 	List<Company> findAll();
 	Company findById(String id);
+	void deleteCompanyById(String id);
 }
