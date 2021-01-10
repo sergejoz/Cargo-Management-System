@@ -10,7 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/companies")
@@ -65,5 +68,29 @@ public class CompanyController {
         Company company = companyService.findById(id);
         model.addAttribute("offices", officeService.findOfficesByCompany(company));
         return "company/listed-offices";
+    }
+
+    @GetMapping("/add")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String addCompany (Model model, @ModelAttribute(name = "company") Company company) {
+        model.addAttribute("company", company);
+        model.addAttribute("companies", companyService.findAll());
+        return "company/add";
+    }
+
+    @PostMapping("/add")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String addOfficeConfirm(Model model,
+                                   @Valid @ModelAttribute(name = "company") Company company, BindingResult bindingResult) {
+
+        if(!bindingResult.hasErrors()) {
+            this.companyService.createCompany(company);
+            model.addAttribute("company", company);
+            model.addAttribute("companies", companyService.findAll());
+            return "company/all";
+        }
+        else {
+            return "company/add";
+        }
     }
 }

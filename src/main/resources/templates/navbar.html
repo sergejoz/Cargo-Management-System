@@ -72,6 +72,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="adminDropdown">
                                 <a class="dropdown-item" th:href="@{/companies/all}">Все компании</a>
+                                <a sec:authorize="hasAnyRole('ROLE_ADMIN')" class="dropdown-item" th:href="@{/companies/add}">Создать комапнию</a>
                             </div>
                         </div>
                     </li>
