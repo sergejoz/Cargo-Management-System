@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class OfficeServiceImpl implements OfficeService {
@@ -26,6 +27,11 @@ public class OfficeServiceImpl implements OfficeService {
 	@Override
 	public Office findById(String id) {
 		return this.officeRepository.findById(id).orElseThrow(() -> new IllegalArgumentException());
+	}
+
+	@Override
+	public Set<Office> findOfficesByCompany(Company company) {
+		return officeRepository.findOfficesByCompany(company);
 	}
 
 	@Override

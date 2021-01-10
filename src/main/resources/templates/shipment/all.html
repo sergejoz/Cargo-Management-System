@@ -75,10 +75,7 @@
                        class="btn btn-info btn-sm">
                         Изменить
                     </a>
-                    </td>
-                    </div>
-                    <div sec:authorize="hasAnyRole('ADMIN','EMPLOYEE')">
-                    <td class="col-md-1 text-center">
+<p></p>
                         <a th:href="@{/shipments/delete/{id}(id=${shipment.id})}"
                            class="btn btn-info btn-sm">
                             Удалить

@@ -65,24 +65,24 @@ public class ShipmentController  {
 		}
 	}
 
-//	@GetMapping("/shipments/edit/{id}")
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
-//	public String edit(@PathVariable String id,Model model){
-//		Shipment shipment = this.shipmentService.findShipmentById(id);
-//		model.addAttribute("model", shipment);
-//		model.addAttribute("customers",customerService.findAllCustomers());
-//		return "shipment/edit";
-//	}
-//
-//	@PostMapping("/edit/{id}")
-//	@PreAuthorize("hasRole('ROLE_ADMIN')")
-//	public String editShipmentConfirm(@PathVariable String id,Model model, @ModelAttribute(name = "shipment") Shipment shipment) {
-//
-//		shipment.setId(id);
-//		this.shipmentService.updateShipment(shipment);
-//		model.addAttribute("shipments",shipmentService.findAllShipments());
-//		return  "shipment/listed-shipments";
-//	}
+	@GetMapping("/shipments/edit/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String edit(@PathVariable String id,Model model){
+		Shipment shipment = this.shipmentService.findShipmentById(id);
+		model.addAttribute("model", shipment);
+		model.addAttribute("customers",customerService.findAllCustomers());
+		return "shipment/edit";
+	}
+
+	@PostMapping("/edit/{id}")
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	public String editShipmentConfirm(@PathVariable String id,Model model, @ModelAttribute(name = "shipment") Shipment shipment) {
+
+		shipment.setId(id);
+		this.shipmentService.updateShipment(shipment);
+		model.addAttribute("shipments",shipmentService.findAllShipments());
+		return  "shipment/listed-shipments";
+	}
 
 
 	@GetMapping("/allShipments")

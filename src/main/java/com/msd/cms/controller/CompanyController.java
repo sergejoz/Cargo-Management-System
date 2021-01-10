@@ -2,6 +2,7 @@ package com.msd.cms.controller;
 
 import com.msd.cms.entities.Company;
 import com.msd.cms.entities.Customer;
+import com.msd.cms.entities.Office;
 import com.msd.cms.service.CompanyService;
 import com.msd.cms.service.EmployeeService;
 import com.msd.cms.service.OfficeService;
@@ -9,9 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/companies")
@@ -41,5 +40,30 @@ public class CompanyController {
         companyService.deleteCompanyById(id);
         model.addAttribute("companies", companyService.findAll());
         return "company/all";
+    }
+
+    @GetMapping("/companies/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String edit(@PathVariable String id,Model model){
+        Company company = this.companyService.findById(id);
+        model.addAttribute("company", company);
+        return "company/edit";
+    }
+
+    @PostMapping("/edit/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String editCompanyConfirm(@PathVariable String id,Model model, @ModelAttribute(name = "companies") Company company) {
+        company.setId(id);
+        this.companyService.updateCompany(company);
+        model.addAttribute("companies", companyService.findAll());
+        return "company/all";
+    }
+
+    @GetMapping("/offices/all/{id}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public String allEmployeesFromOffice(@PathVariable String id, Model model) {
+        Company company = companyService.findById(id);
+        model.addAttribute("offices", officeService.findOfficesByCompany(company));
+        return "company/listed-offices";
     }
 }
